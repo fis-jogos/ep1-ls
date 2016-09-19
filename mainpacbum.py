@@ -64,7 +64,8 @@ def update(dt):
 
 	if keyboard.p:
 		PacBum.posx = 130;
-		PacBum.posy = 590;		
+		PacBum.posy = 590;
+		PacBum.gravity = 1000		
 
 	#Mostrar Força X
 	if keyboard.q:
@@ -89,12 +90,12 @@ def update(dt):
 
 
 	#Add Força X
-	if keyboard.f & keyboard.p:
+	if keyboard.e & keyboard.p:
 		PacBum.addforcex()
 		time.delay(100)
 
 	#Remove Força X
-	if keyboard.f & keyboard.l:
+	if keyboard.e & keyboard.l:
 		PacBum.rmforcex()
 		time.delay(100)
 
@@ -132,23 +133,23 @@ def update(dt):
 		Vnumber.draw()
 
 	#Add velocidade X
-	if keyboard.e & keyboard.p:
+	if keyboard.d & keyboard.p:
 		PacBum.addvelx()
 		time.delay(100)
  
 	#Remove velocidade X
-	if keyboard.e & keyboard.l:
+	if keyboard.d & keyboard.l:
 		PacBum.rmvelx()
 		time.delay(100)
 
 
 	#Add velocidade Y
-	if keyboard.d & keyboard.p:
+	if keyboard.f & keyboard.p:
 		PacBum.addvely()
 		time.delay(100)
 
 	#Remove velocidade Y
-	if keyboard.d & keyboard.l:
+	if keyboard.f & keyboard.l:
 		PacBum.rmvely()
 		time.delay(100)
 
