@@ -10,41 +10,53 @@ HEIGHT = 700
 #Ambientação
 env = environment(gravity = 10)
 
-PacBum = PacBum(Actor('persona_1'), mass = 10, gravity  = env.gravity, status = True, imagestatus = False, 
-				posx =  110, posy = 580, velx = 0, vely = -0, acx = 0, acy = 0, forcex =0, forcey = 0)
+PacBum = PacBum(Actor('persona_1'), mass = 100, gravity = env.gravity, status = True, imagestatus = False, 
+				posx =  210, posy = 635, velx = 100, vely = -100, acx = 0, acy = 0, forcex =0, forcey = 0)
 
-Cannon = Cannon(Actor('canhao'), mass = 1, gravity = env.gravity, posx = 100, posy = 590, theta = 0)
+Cannon = Cannon(Actor('cannon'), mass = 1, gravity = env.gravity, posx = 100, posy = 635, theta = 0)
 
 WheelCannon = Actor('roda_canhao', pos=(30, 630))
 
-Tnumber = Actor('0', pos=(530,325))
-Unumber = Actor('0', pos=(630,325))
-Vnumber = Actor('0', pos=(730, 325))
-BoardView = Actor('gravidade', pos=(630, 200))
 
 
 #Objetos no ambiente
 env.add(PacBum)
 env.add(Cannon)
 env.add(WheelCannon)
-
+Tnumber = Actor('0', pos=(530,325))
+Unumber = Actor('0', pos=(630,325))
+Vnumber = Actor('0', pos=(730, 325))
+BoardView = Actor('force_x', pos=(630, 200))
 
 def draw():
+	screen.blit('background', pos=(0, 0))
 	env.draw()
 
+
 def convertnumber(value):
-	number = value / 100
-	number = int(number)
-	number = str(number)
-	return number
+	if value > 0:
+		number = value / 100
+		number = int(number)
+		number = str(number)
+		return number
+	else:
+		number = (value / 100) * (-1)
+		number = int(number)
+		number = str(number)
+		return number		
 
 def update(dt):
 
 	screen.clear()
 
+	if keyboard.space:
+		PacBum.acelerationXY()
+		PacBum.velocityXY(dt)
+		PacBum.positionXY(dt)
+
 	#Mostrar Força X
 	if keyboard.q:
-		BoardView.image = 'forca'
+		BoardView.image = 'force_x'
 		aux = convertnumber(PacBum.forcex)
 		Tnumber.image = aux
 		BoardView.draw()
@@ -55,7 +67,7 @@ def update(dt):
 
 	#Mostrar Força Y
 	if keyboard.w:
-		BoardView.image = 'forca'
+		BoardView.image = 'force_y'
 		aux = convertnumber(PacBum.forcey)
 		Tnumber.image = aux
 		BoardView.draw()
@@ -85,21 +97,11 @@ def update(dt):
 		PacBum.rmforcey()
 		time.delay(100)
 
-	#Lançamento do PacBum
-	if keyboard.space:
-		PacBum.acelerationXY()
-		PacBum.velocityXY(dt)
-		PacBum.positionXY(dt)
-
-
-
-
-
 
 
 	#Mostrar velocidade X
 	if keyboard.a:
-		BoardView.image = 'forca'
+		BoardView.image = 'velocity_x'
 		aux = convertnumber(PacBum.velx)
 		Tnumber.image = aux
 		BoardView.draw()
@@ -109,7 +111,7 @@ def update(dt):
 
 	#Mostrar velocidade Y
 	if keyboard.s:
-		BoardView.image = 'forca'
+		BoardView.image = 'velocity_y'
 		aux = convertnumber(PacBum.vely)
 		Tnumber.image = aux
 		BoardView.draw()
@@ -121,7 +123,7 @@ def update(dt):
 	if keyboard.e & keyboard.p:
 		PacBum.addvelx()
 		time.delay(100)
-
+ 
 	#Remove velocidade X
 	if keyboard.e & keyboard.l:
 		PacBum.rmvelx()
@@ -137,4 +139,5 @@ def update(dt):
 	if keyboard.d & keyboard.l:
 		PacBum.rmvely()
 		time.delay(100)
+
 

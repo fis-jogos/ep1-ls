@@ -1,11 +1,11 @@
 class environment:
 
-	gravity = 10
+	gravity = 200
 	entities=[]
 
 	def __init__(self, *entities, gravity):
 		self.entities = list(entities)
-		self.gravity = 0
+		self.gravity = 1000
 
 	def draw(self):
 
