@@ -52,10 +52,19 @@ def update(dt):
 
 	screen.clear()
 
+	#Lança o personagem
 	if keyboard.space:
 		PacBum.acelerationXY()
 		PacBum.velocityXY(dt)
 		PacBum.positionXY(dt)
+		if PacBum.posy > 650:
+			PacBum.velx = 0;
+			PacBum.vely = 0;
+			PacBum.gravity = 0;
+
+	if keyboard.p:
+		PacBum.posx = 130;
+		PacBum.posy = 590;		
 
 	#Mostrar Força X
 	if keyboard.q:
