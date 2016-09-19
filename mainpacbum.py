@@ -7,29 +7,32 @@ from pygame import *
 WIDTH = 1300
 HEIGHT = 700
 
+
 #Ambientação
 env = environment(gravity = 10)
 
 PacBum = PacBum(Actor('persona_1'), mass = 100, gravity = env.gravity, status = True, imagestatus = False, 
-				posx =  210, posy = 635, velx = 100, vely = -100, acx = 0, acy = 0, forcex =0, forcey = 0)
+				posx =  130, posy = 590, velx = 100, vely = -100, acx = 0, acy = 0, forcex =0, forcey = 0)
 
-Cannon = Cannon(Actor('cannon'), mass = 1, gravity = env.gravity, posx = 100, posy = 635, theta = 0)
+Cannon = Cannon(Actor('cannon'), mass = 1, gravity = env.gravity, posx = 100, posy = 580, theta = 0)
 
 WheelCannon = Actor('roda_canhao', pos=(30, 630))
 
-
-
-#Objetos no ambiente
-env.add(PacBum)
-env.add(Cannon)
-env.add(WheelCannon)
 Tnumber = Actor('0', pos=(530,325))
 Unumber = Actor('0', pos=(630,325))
 Vnumber = Actor('0', pos=(730, 325))
 BoardView = Actor('force_x', pos=(630, 200))
+Background = Actor('background', pos=(650,350))
+
+
+#Objetos no ambiente
+env.add(Background)
+env.add(PacBum)
+env.add(Cannon)
+env.add(WheelCannon)
+
 
 def draw():
-	screen.blit('background', pos=(0, 0))
 	env.draw()
 
 
@@ -57,9 +60,9 @@ def update(dt):
 	#Mostrar Força X
 	if keyboard.q:
 		BoardView.image = 'force_x'
+		BoardView.draw()
 		aux = convertnumber(PacBum.forcex)
 		Tnumber.image = aux
-		BoardView.draw()
 		Tnumber.draw()
 		Unumber.draw()
 		Vnumber.draw()
