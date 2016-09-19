@@ -5,7 +5,7 @@ class environment:
 
 	def __init__(self, *entities, gravity):
 		self.entities = list(entities)
-		self.gravity = 100
+		self.gravity = 0
 
 	def draw(self):
 
