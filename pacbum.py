@@ -70,12 +70,37 @@ class PacBum:
 
 	def rmforcey(self):
 		if self.forcey > 100:
-			self.forcex -= 100
+			self.forcey -= 100
 		else:
 			self.forcey = 100
 
 
 
+
+
+	def addvelx(self):
+		if self.velx < 900:
+			self.velx += 100
+		else:
+			self.velx = 900
+
+	def rmvelx(self):
+		if self.velx > 100:
+			self.velx -= 100
+		else:
+			self.velx = 100
+
+	def addvely(self):
+		if self.vely < 900:
+			self.vely += 100
+		else:
+			self.vely = 900
+
+	def rmvelyy(self):
+		if self.vely > 100:
+			self.vely -= 100
+		else:
+			self.vely = 100
 
 
 

@@ -10,7 +10,7 @@ HEIGHT = 700
 #Ambientação
 env = environment(gravity = 10)
 
-PacBum = PacBum(Actor('persona_1'), mass = 500, gravity  = env.gravity, status = True, imagestatus = False, 
+PacBum = PacBum(Actor('persona_1'), mass = 10, gravity  = env.gravity, status = True, imagestatus = False, 
 				posx =  110, posy = 580, velx = 0, vely = -0, acx = 0, acy = 0, forcex =0, forcey = 0)
 
 Cannon = Cannon(Actor('canhao'), mass = 1, gravity = env.gravity, posx = 100, posy = 590, theta = 0)
@@ -25,7 +25,7 @@ BoardView = Actor('gravidade', pos=(630, 200))
 
 #Objetos no ambiente
 env.add(PacBum)
-#env.add(Cannon)
+env.add(Cannon)
 env.add(WheelCannon)
 
 
@@ -51,7 +51,7 @@ def update(dt):
 		Tnumber.draw()
 		Unumber.draw()
 		Vnumber.draw()
-		time.delay(1000)
+
 
 	#Mostrar Força Y
 	if keyboard.w:
@@ -62,32 +62,79 @@ def update(dt):
 		Tnumber.draw()
 		Unumber.draw()
 		Vnumber.draw()
-		time.delay(1000)
+
 
 	#Add Força X
 	if keyboard.f & keyboard.p:
 		PacBum.addforcex()
-		time.delay(500)
+		time.delay(100)
 
 	#Remove Força X
 	if keyboard.f & keyboard.l:
 		PacBum.rmforcex()
-		time.delay(500)
+		time.delay(100)
 
 
 	#Add Força Y
 	if keyboard.r & keyboard.p:
 		PacBum.addforcey()
-		time.delay(500)
+		time.delay(100)
 
 	#Remove Força Y
 	if keyboard.r & keyboard.l:
 		PacBum.rmforcey()
-		time.delay(500)
+		time.delay(100)
 
+	#Lançamento do PacBum
 	if keyboard.space:
 		PacBum.acelerationXY()
 		PacBum.velocityXY(dt)
 		PacBum.positionXY(dt)
 
+
+
+
+
+
+
+	#Mostrar velocidade X
+	if keyboard.a:
+		BoardView.image = 'forca'
+		aux = convertnumber(PacBum.velx)
+		Tnumber.image = aux
+		BoardView.draw()
+		Tnumber.draw()
+		Unumber.draw()
+		Vnumber.draw()
+
+	#Mostrar velocidade Y
+	if keyboard.s:
+		BoardView.image = 'forca'
+		aux = convertnumber(PacBum.vely)
+		Tnumber.image = aux
+		BoardView.draw()
+		Tnumber.draw()
+		Unumber.draw()
+		Vnumber.draw()
+
+	#Add velocidade X
+	if keyboard.e & keyboard.p:
+		PacBum.addvelx()
+		time.delay(100)
+
+	#Remove velocidade X
+	if keyboard.e & keyboard.l:
+		PacBum.rmvelx()
+		time.delay(100)
+
+
+	#Add velocidade Y
+	if keyboard.d & keyboard.p:
+		PacBum.addvely()
+		time.delay(100)
+
+	#Remove velocidade Y
+	if keyboard.d & keyboard.l:
+		PacBum.rmvely()
+		time.delay(100)
 
