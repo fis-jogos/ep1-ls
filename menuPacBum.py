@@ -2,6 +2,7 @@
 import pygame
 import time
 from menuArrow import *
+from screenCredits import *
 from pygame.locals import *
 from sys import exit
 
@@ -47,6 +48,7 @@ def mainMenu():
                 exit()
 
         pressed_keys = pygame.key.get_pressed()
+
         if pressed_keys[K_UP]:
             arrow.value -= 1
             time.sleep(1/7)
@@ -59,6 +61,17 @@ def mainMenu():
             time.sleep(1/7)
             if arrow.value > 3:
                 arrow.value = 3
+
+        if pressed_keys[K_RETURN]:
+            if arrow.value == 0:
+                print('0')
+            elif arrow.value == 1:
+                print('1')
+            elif arrow.value == 2:
+                screenCredits()
+            if arrow.value == 3:
+                pygame.quit()
+                exit()
 
         pygame.display.update()
         time_passed = clock.tick(30)
