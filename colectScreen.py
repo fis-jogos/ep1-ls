@@ -24,13 +24,6 @@ def colectScreen():
     background = setBackgroud()
 
     PacBum = pacBum()
-
-    """
-    font_name = pygame.font.get_default_font()
-    game_font= pygame.font.SysFont(font_name, 28)
-
-    textTitle = game_font.render('\O/      EQUIPE-SE     \O/', 1, (0, 0, 0))
-    """
     text_list = list()
 
     title = textScreen()

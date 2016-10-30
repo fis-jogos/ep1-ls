@@ -4,14 +4,9 @@ import time
 from menuArrow import *
 from colectScreen import *
 from screenCredits import *
+from background import *
 from pygame.locals import *
 from sys import exit
-
-#Define o plano de fundo do menu principal
-def setBackgroud():
-    background_filename = 'images/bg_menu.png'
-    background = pygame.image.load(background_filename).convert()
-    return background
 
 #Inicializa o menu principal
 def mainMenu():
@@ -21,32 +16,58 @@ def mainMenu():
     pygame.font.init()
     screen = pygame.display.set_mode((1300, 700), 0, 32)
     pygame.display.set_caption('PAC BUM! > Menu Principal')
-    background = setBackgroud()
+
+    #Definição do background.
+    bg = background()
+    bg.image = "images/bg_menu.png"
+
 
     #textos que aparecem no menu principal
-    font_name = pygame.font.get_default_font()
-    game_font = pygame.font.SysFont(font_name, 32)
-    textInit = game_font.render('INICIAR', 1, (0, 0, 0))
-    textOptions = game_font.render('OPÇÕES',1,(0,0,0))
-    textCredit = game_font.render('CRÉDITOS',1,(0,0,0))
-    textExit = game_font.render('SAIR',1,(0,0,0))
-    textVersion = game_font.render('V - 0.0.1', 1, (0,0,0))
+    list_text = list()
+
+    textInit = textScreen()
+    textInit.text = "INICIAR"
+    textInit.pygamePosition =[550, 265]
+
+    textOptions = textScreen()
+    textOptions.text = "OPÇÕES"
+    textOptions.pygamePosition = [550, 315]
+
+    textCredit = textScreen()
+    textCredit.text = "CRÉDITOS"
+    textCredit.pygamePosition = [550,365]
+
+    textExit = textScreen()
+    textExit.text = "SAIR"
+    textExit.pygamePosition = [550,415]
+
+    textVersion = textScreen()
+    textVersion.text = "V - 0.0.2"
+    textVersion.pygamePosition = [1210,675]
+
+    add_text(list_text, textInit)
+    add_text(list_text, textOptions)
+    add_text(list_text, textCredit)
+    add_text(list_text, textExit)
+    add_text(list_text, textVersion)
+
 
     #cria a seta de controle do menu principal
     arrow = selectArrow()
+
+
 
     #Clock e laço de update do menu principal
     clock = pygame.time.Clock()
     while True:
 
-        #Habilitação dos textos do menu principal
-        screen.blit(background, (0, 0))
-        screen.blit(textInit, (550, 265))
-        screen.blit(textOptions, (550, 315))
-        screen.blit(textCredit, (550, 365))
-        screen.blit(textExit, (550, 415))
-        screen.blit(textVersion,(1210,675))
+        #Desenha o plano de fundo.
+        draw_background(screen, bg)
 
+        #Desenha os textos da tela.
+        draw_text(screen, list_text)
+
+        #Desenha a seta do menu principal.
         #A posição da seta em Y muda de acordo com o valor selecionado. y + 0 * 50 ou y + 1 * 50 ou y + 2 * 50... Pra mudar a posição dela.
         screen.blit(arrow.arr, (arrow.posX, (arrow.posY + arrow.value * 50)))
 
