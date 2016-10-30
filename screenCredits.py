@@ -15,7 +15,7 @@ def setBackgroud():
 
 
 #Cria a tela dos créditos
-def screenCredits()
+def screenCredits():
 
     #Inicia os objetos na tela de créditos
     pygame.init()

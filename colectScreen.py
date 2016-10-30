@@ -3,6 +3,7 @@ import pygame
 import time
 from FGAme import *
 from pacBum import *
+from textClass import *
 from pygame.locals import *
 from sys import exit
 
@@ -23,38 +24,47 @@ def colectScreen():
     background = setBackgroud()
 
     PacBum = pacBum()
-    PacBum.fgameS.pos  = (50, 100)
-    PacBum.fgameS.gravity = 7
-    print( PacBum.fgameS.pos)
 
+    """
     font_name = pygame.font.get_default_font()
     game_font= pygame.font.SysFont(font_name, 28)
 
     textTitle = game_font.render('\O/      EQUIPE-SE     \O/', 1, (0, 0, 0))
+    """
+    text_list = list()
+
+    title = textScreen()
+    title.text  = "\o   Equipe-se  o/"
+    title.pygamePosition = [50,755]
+
+    score = textScreen()
+    score.pygamePosition = [450,750]
+
+    lifes = textScreen()
+    lifes.pygamePosition = [450, 775]
+
+    time = textScreen()
+    time.pygamePosition = [450, 800]
+
+    add_text(text_list, title)
+    add_text(text_list, score)
+    add_text(text_list, lifes)
+    add_text(text_list, time)
 
 
 
 #Clock e laço de update da faze
     clock = pygame.time.Clock()
     while True:
-
-        #Atualização dos textos que aparecem na tela
-        score = "Score: " + str(int(PacBum.points))
-        lifes = "Vidas: " + str(int(PacBum.lifes))
-        time = "Tempo: "
-
-        textPoints = game_font.render(score,1,(0,0,0))
-        textLifes = game_font.render(lifes,1,(0,0,0))
-        textTime = game_font.render(time,1,(0,0,0))
-
-
         screen.blit(background, (0, 0))
-        screen.blit(PacBum.pygameS,(PacBum.fgameS.pos),PacBum.rect)
-        screen.blit(textTitle, (50, 775))
-        screen.blit(textPoints, (450, 750))
-        screen.blit(textLifes, (450, 775))
-        screen.blit(textTime, (450, 800))
 
+        score.text = "Score: " + str(int(PacBum.points))
+        lifes.text = "Vidas: " + str(int(PacBum.lifes))
+        time.text = "Tempo: "
+
+        draw_text(screen, text_list)
+
+        screen.blit(PacBum.pygameS,(PacBum.pygamePosition),PacBum.rect)
 
         #Habilita que a tela seja fechada no "x"
         for event in pygame.event.get():
@@ -84,18 +94,18 @@ def colectScreen():
 
 
         #PULAR
-        if pressed_keys[K_SPACE]:
-            jump(PacBum, 0, -75)
+        if pressed_keys[K_UP]:
+            jump(PacBum, 0, -100)
             animation_pacBum(PacBum)
 
         #PULAR PARA FRENTE
-        if pressed_keys[K_SPACE] and pressed_keys[K_RIGHT]:
-            jump(PacBum, 10, -75)
+        if pressed_keys[K_UP] and pressed_keys[K_RIGHT]:
+            jump(PacBum, 10, -100)
             animation_pacBum(PacBum)
 
         #PULAR PARA TRÁS
-        if pressed_keys[K_SPACE] and pressed_keys[K_LEFT]:
-            jump(PacBum, -10, -75)
+        if pressed_keys[K_UP] and pressed_keys[K_LEFT]:
+            jump(PacBum, -10, -100)
             animation_pacBum(PacBum)
 
 

@@ -15,6 +15,7 @@ class pacBum:
         self.dead = False
         self.fgameS = world.add.circle(25, pos=(400, 300), color='green', mass = 1000)
         self.pygameS = pygame.image.load(self.image).convert_alpha()
+        self.pygamePosition  = [50,625]
         self.rect = [0,0,60,60]
         self.cont_animation = 0
         self.points = 0
@@ -45,11 +46,11 @@ def forward_colectScreen(self, speedX):
 
     self.image = 'images/pacbum_front.png'
     self.pygameS = pygame.image.load(self.image).convert_alpha()
-    if self.fgameS.pos[0] >= 1100:
+    if self.pygamePosition[0] >= 1100:
         speedX = 0
 
 
-    return self.fgameS.move(speedX, 0)
+    self.pygamePosition[0] = self.pygamePosition[0] + speedX
 
 
 
@@ -61,10 +62,10 @@ def backward_colectScreen(self, speedX):
     self.image = 'images/pacbum_back.png'
     self.pygameS = pygame.image.load(self.image).convert_alpha()
 
-    if self.fgameS.pos[0] <= 50:
+    if self.pygamePosition[0] <= 50:
         speedX = 0
 
-    return self.fgameS.move(-speedX, 0)
+    self.pygamePosition[0] = self.pygamePosition[0] - speedX
 
 
 
@@ -76,18 +77,6 @@ def jump(self, speedX, speedY):
         speedY = 0
 
     return self.fgameS.move(speedX, speedY)
-
-
-
-
-
-
-
-
-
-
-
-
 
 def gravity_influence(self):
 
