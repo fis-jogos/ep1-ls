@@ -13,15 +13,14 @@ class pacBum:
         self.image = 'images/pacbum_front.png'
         self.lifes = 0
         self.dead = False
-        self.fgameS = world.add.circle(25, pos=(400, 300), color='green', mass = 1000)
+        self.mass = 10
+        self.raio = 30
         self.pygameS = pygame.image.load(self.image).convert_alpha()
-        self.pygamePosition  = [50,625]
+        self.position  = [50,625]
         self.rect = [0,0,60,60]
         self.cont_animation = 0
         self.points = 0
         self.phase = 0
-
-
 
 #Função da animação do personagem principal.
 def animation_pacBum(self):
@@ -38,19 +37,21 @@ def animation_pacBum(self):
         self.cont_animation = 0
 
 
-
+def animation_update(self, image):
+    self.image = image
+    self.pygameS = pygame.image.load(self.image).convert_alpha()
 
 
 #Função e detecção de colisão do movimento do personagem principal na tela colectScreen
 def forward_colectScreen(self, speedX):
 
-    self.image = 'images/pacbum_front.png'
-    self.pygameS = pygame.image.load(self.image).convert_alpha()
-    if self.pygamePosition[0] >= 1100:
+    animation_update(self, 'images/pacbum_front.png')
+
+    if self.position[0] >= 1100:
         speedX = 0
 
 
-    self.pygamePosition[0] = self.pygamePosition[0] + speedX
+    self.position[0] = self.position[0] + speedX
 
 
 
@@ -59,33 +60,13 @@ def forward_colectScreen(self, speedX):
 #Função e detecção de colisão do movimento do personagem principal na tela colectScreen
 def backward_colectScreen(self, speedX):
 
-    self.image = 'images/pacbum_back.png'
-    self.pygameS = pygame.image.load(self.image).convert_alpha()
+    animation_update(self, 'images/pacbum_back.png')
 
-    if self.pygamePosition[0] <= 50:
+    if self.position[0] <= 50:
         speedX = 0
 
-    self.pygamePosition[0] = self.pygamePosition[0] - speedX
+    self.position[0] = self.position[0] - speedX
 
-
-
-
-#Função e detecção de colisão do pulo do personagem principal na tela colectScreen
-def jump(self, speedX, speedY):
-
-    if self.fgameS.pos[1] < 625:
-        speedY = 0
-
-    return self.fgameS.move(speedX, speedY)
-
-def gravity_influence(self):
-
-    G = self.fgameS.gravity[1]
-
-    if self.fgameS.pos[1] >= 625:
-        G = 0
-
-    return self.fgameS.move(0, -G)
 
 
 

@@ -1,17 +1,12 @@
 #! /usr/bin/env python
 import pygame
 import time
-from menuArrow import *
+from background import *
+from textClass import *
 import menuPacBum
 from pygame.locals import *
 from sys import exit
 
-
-#Define o plano de fundo da tela dos créditos
-def setBackgroud():
-    background_filename = 'images/bg_menu_back.png'
-    background = pygame.image.load(background_filename).convert()
-    return background
 
 
 #Cria a tela dos créditos
@@ -20,38 +15,56 @@ def screenCredits():
     #Inicia os objetos na tela de créditos
     pygame.init()
     pygame.font.init()
-
     screen = pygame.display.set_mode((1300, 700), 0, 32)
     pygame.display.set_caption('PAC BUM! > Creditos')
-    background = setBackgroud()
 
-    #inicia os textos na tela de cŕeditos
-    font_name = pygame.font.get_default_font()
-    game_font = pygame.font.SysFont(font_name, 32)
-    textCred_1 = game_font.render("Universidade de Brasília - 2016", 1, (0,0,0))
-    textCred_2 = game_font.render("PacBum V - 0.0.1 por: Lucas S. Souza", 1, (0,0,0))
-    textCred_3 = game_font.render("Email: lucas.soaresouza@gmail.com", 1, (0,0,0))
-    credPos_1= [400, 700]
-    credPos_2= [400, 740]
-    credPos_3= [400, 780]
-    speed = 3
+    #Definição do background.
+    bg = background()
+    bg.image = "images/bg_menu_back.png"
+
+    #Definição dos textos na tela de cŕeditos
+    text_list = list()
+
+    textCred_1 = textScreen()
+    textCred_1.text = "Universidade de Brasília - 2016"
+    textCred_1.pygamePosition = [400, 700]
+
+    textCred_2 = textScreen()
+    textCred_2.text = "PacBum V - 0.0.1 por: Lucas S. Souza"
+    textCred_2.pygamePosition = [400, 740]
+
+    textCred_3 = textScreen()
+    textCred_3.text = "Email: lucas.soaresouza@gmail.com"
+    textCred_3.pygamePosition = [400,780]
+
+    add_text(text_list, textCred_1)
+    add_text(text_list, textCred_2)
+    add_text(text_list, textCred_3)
+
+    #Velocidade dos textos na tela.
+    text_speed = 3
+
 
     #Laço de update da tela de cŕeditos
     clock = pygame.time.Clock()
     while True:
-        screen.blit(background, (0, 0))
-        if credPos_1[1] > 200:
-            credPos_1[1] -= speed
-            credPos_2[1] -= speed
-            credPos_3[1] -= speed
-        else:
-            credPos_1[1] = 200
-            credPos_2[1] = 240
-            credPos_3[1] = 280
 
-        screen.blit(textCred_1, credPos_1)
-        screen.blit(textCred_2, credPos_2)
-        screen.blit(textCred_3, credPos_3)
+        #Desenha o plano de fundo
+        draw_background(screen, bg)
+
+        #Desenha os textos na tela
+        draw_text(screen, text_list)
+
+        #Movimento do texto na tela de créditos
+        if textCred_1.pygamePosition[1] > 200:
+            textCred_1.pygamePosition[1] -= text_speed
+            textCred_2.pygamePosition[1] -= text_speed
+            textCred_3.pygamePosition[1] -= text_speed
+        else:
+            textCred_1.pygamePosition[1] = 200
+            textCred_2.pygamePosition[1] = 240
+            textCred_3.pygamePosition[1] = 280
+
 
         #Habilita que a janela seja fechada no "x"
         for event in pygame.event.get():
