@@ -4,6 +4,7 @@ import time
 from pygame.locals import *
 from sys import exit
 
+#Classe da seta dos menus
 class selectArrow:
 
     def __init__(self):
@@ -12,8 +13,3 @@ class selectArrow:
         self.value = 0
         self.posX = 500
         self.posY = 250
-
-def setArrow():
-    select = selectArrow()
-    return select
-
