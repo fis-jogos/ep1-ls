@@ -17,5 +17,6 @@ class obj_game:
         self.rect = [0,0,60,60]
         self.gravity  = 0
         self.cont_animation = 0
-
-
+        self.who_touch = "default"
+        self.split_range = 0
+        self.vel_in_x = 0

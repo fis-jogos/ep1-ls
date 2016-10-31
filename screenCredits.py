@@ -21,6 +21,7 @@ def screenCredits():
     #Definição do background.
     bg = background()
     bg.image = "images/bg_menu_back.png"
+    bg.rect = [0,0,1300,1300]
 
     #Definição dos textos na tela de cŕeditos
     text_list = list()
@@ -75,7 +76,6 @@ def screenCredits():
         #Habilita que a janela retorne para o menu principal ao "ESC" ser teclado.
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[K_ESCAPE]:
-            pygame.quit()
             menuPacBum.mainMenu()
 
         #Atualiza a tela de acordo com o laço principal

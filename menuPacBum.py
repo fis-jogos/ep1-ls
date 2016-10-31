@@ -20,6 +20,7 @@ def mainMenu():
     #Definição do background.
     bg = background()
     bg.image = "images/bg_menu.png"
+    bg.rect = [0,0,1300,1300]
 
 
     #textos que aparecem no menu principal

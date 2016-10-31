@@ -16,12 +16,12 @@ class textScreen:
         self.game_font = pygame.font.SysFont(self.font, self.d_font)
 
 
-
+#Função que adiciona um objeto do tipo texto à lista de textos
 def add_text(text_list, text):
 
     text_list.append(text)
 
-
+#Função que desenha os textos em tela.
 def draw_text(screen, text_list):
 
     for text in text_list:
