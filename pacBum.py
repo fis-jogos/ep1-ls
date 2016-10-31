@@ -16,11 +16,13 @@ class pacBum:
         self.mass = 10
         self.raio = 30
         self.pygameS = pygame.image.load(self.image).convert_alpha()
-        self.position  = [50,625]
+        self.position  = [50,640]
         self.rect = [0,0,60,60]
         self.cont_animation = 0
         self.points = 0
         self.phase = 0
+        self.gravity = 0
+        self.bombs = 0
 
 #Função da animação do personagem principal.
 def animation_pacBum(self):
