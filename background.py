@@ -10,7 +10,7 @@ class background:
         self.image = "images/bg_menu.png"
         self.pygameS = pygame.image.load(self.image).convert()
         self.rect = [0,0,1260,1260]
-        self.for_rect_background = 10
+        self.for_rect_background = 0
 
 #Função que desenha os planos de fundo
 def draw_background(screen, self):

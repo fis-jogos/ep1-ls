@@ -16,7 +16,7 @@ from screenBattle import *
 
 def time_end(time_for_game, pacbum):
 
-    if time_for_game >= 30:
+    if time_for_game >= 60:
         pacbum.position = [3000, 3000]
         return True
     else:
@@ -66,7 +66,7 @@ def colectScreen():
 
     end_of_time = textScreen()
     end_of_time.pygamePosition = [400, 400]
-    end_of_time.text = "O TEMPO SE ESGOTOU... INDO PARA A BATALHA! [PRESS => SPACE]"
+    end_of_time.text = "O TEMPO SE ESGOTOU... INDO PARA A BATALHA! [PRESS: SPACE]"
 
     add_text(text_list, vidas)
     add_text(text_list, title)
@@ -78,6 +78,7 @@ def colectScreen():
     #Inicializa os objetos da tela.
     world = environment()
     PacBum = pacBum()
+    PacBum.gravity = world.gravity
 
     #Cow skull
     skull = obj_game()
@@ -161,6 +162,8 @@ def colectScreen():
     #6º Objeto => Nº 5
     add_objects(world, rip)
 
+    add_friction(world, 0.007)
+    add_friction(world, 0.001)
 
     obj_inScreen(world)
     #Clock e laço de update da faze
@@ -179,11 +182,11 @@ def colectScreen():
 
         #Pega o tempo e atualiza
         if second == aux:
-            if time_for_game < 31:
+            if time_for_game < 60:
                 time_for_game += 1
                 aux = second + 1
             else:
-                time_for_game = 31
+                time_for_game = 60
 
         #Define os textos atualizados
         score.text = "Score: " + str(int(PacBum.points))
@@ -200,10 +203,10 @@ def colectScreen():
         if pacbum_is_dead(PacBum):
             draw_pacbum_is_dead(screen, world)
             pid = pac_is_dead.game_font.render(pac_is_dead.text,1,pac_is_dead.color)
-            screen.blit(pid, (pac_is_dSead.pygamePosition))
+            screen.blit(pid, (pac_is_dead.pygamePosition))
 
         #Confere o tempo
-        if time_end(time_for_game, PacBum):
+        if time_end(time_for_game, PacBum) and PacBum.dead is not True:
             end_time = end_of_time.game_font.render(end_of_time.text,1,end_of_time.color)
             screen.blit(end_time, (end_of_time.pygamePosition))
             if pressed_keys[K_SPACE]:
@@ -228,6 +231,7 @@ def colectScreen():
             if PacBum.position[0] > 1000:
 
                 if bg.rect[0] < 2500:
+                    bg.for_rect_background = PacBum.vel_in_x
                     bg.rect[0] += bg.for_rect_background
                 else:
                     bg.rect[0] = 2500
@@ -245,6 +249,7 @@ def colectScreen():
             if PacBum.position[0] < 300 :
 
                 if bg.rect[0] > 100:
+                    bg.for_rect_background = PacBum.vel_in_x
                     bg.rect[0] -= bg.for_rect_background
                 else:
                     bg.rect[0] = 100
@@ -253,13 +258,26 @@ def colectScreen():
 
         #SUBIR
         if pressed_keys[K_UP]:
-            PacBum.position[1] = 550
 
+            if PacBum.position[1] != 550:
+                PacBum.friction_tax = world.friction[1]
+                PacBum.position[1] = 550
+                PacBum.vel_in_x = 15
+
+            else:
+                pass
 
 
         #DESCER
         if pressed_keys[K_DOWN]:
-            PacBum.position[1] = 650
+
+            if PacBum.position[1] != 650:
+                PacBum.friction_tax = world.friction[0]
+                PacBum.position[1] = 650
+                PacBum.vel_in_x = 15
+            else:
+                pass
+
 
 
         #VOLTAR PARA O MENU

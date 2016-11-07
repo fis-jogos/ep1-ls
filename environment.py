@@ -5,16 +5,24 @@ from FGAme import *
 from random import randint
 from pygame.locals import *
 from sys import exit
+from math import *
 
 class environment:
 
     def __init__(self):
         self.objects = list()
-        self.gravity = 0
+        self.gravity = 60
+        self.friction = list()
         self.for_new_object_in_screen = 1200
+        self.position_pacBum = 0
 
 
 
+
+#Função que adiciona "zonas de atrito"
+def add_friction(self, friction):
+
+    self.friction.append(friction)
 
 #Função que adiciona um objeto à lista de objetos
 def add_objects(self, obj):
@@ -30,7 +38,8 @@ def obj_inScreen(self):
     boolean = randint(0,1)
 
     self.objects[number].inScreen = True
-    self.objects[number].vel_in_x = 5
+
+    self.objects[number].vel_in_x = 7
 
     if boolean == 0:
         self.objects[number].position[1] = 630

@@ -8,9 +8,6 @@ from colectScreen import *
 
 def battleScreen(pacbum):
 
-    #Gera personagem princial versão FGAme
-    pacbum.fgameS
-
     #Movimenta personagem principal em Y
     @listen('long-press', 'up', dy = pacbum.vel_in_y/2)
     @listen('long-press', 'down', dy=-pacbum.vel_in_y/2)

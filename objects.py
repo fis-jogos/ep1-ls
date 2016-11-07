@@ -11,12 +11,19 @@ class obj_game:
 
         self.image = 'images/'
         self.inScreen = False
-        self.mass = 10
         self.pygameS = 0
-        self.position  = [50,625]
         self.rect = [0,0,60,60]
-        self.gravity  = 0
         self.cont_animation = 0
         self.who_touch = "default"
         self.split_range = 0
-        self.vel_in_x = 0
+
+        """ATRIBUTOS FISICOS"""
+
+        self.mass = 100
+        self.position  = [50,625]
+        self.gravity = 0
+        self.friction_tax = 0.01
+        self.total_force_in_x = 0
+        self.acel_in_x = 0.5
+        self.vel_in_x = 15
+        self.vel_in_y = 0
