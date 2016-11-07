@@ -31,7 +31,7 @@ def screenCredits():
     textCred_1.pygamePosition = [400, 700]
 
     textCred_2 = textScreen()
-    textCred_2.text = "PacBum V - 0.0.1 por: Lucas S. Souza"
+    textCred_2.text = "PacBum V - 0.1.0 por: Lucas S. Souza"
     textCred_2.pygamePosition = [400, 740]
 
     textCred_3 = textScreen()

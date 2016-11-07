@@ -43,7 +43,7 @@ def mainMenu():
     textExit.pygamePosition = [550,415]
 
     textVersion = textScreen()
-    textVersion.text = "V - 0.0.2"
+    textVersion.text = "V - 0.1.0"
     textVersion.pygamePosition = [1210,675]
 
     add_text(list_text, textInit)
