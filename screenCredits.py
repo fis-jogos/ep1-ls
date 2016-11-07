@@ -75,7 +75,7 @@ def screenCredits():
 
         #Habilita que a janela retorne para o menu principal ao "ESC" ser teclado.
         pressed_keys = pygame.key.get_pressed()
-        if pressed_keys[K_ESCAPE]:
+        if pressed_keys[K_r]:
             menuPacBum.mainMenu()
 
         #Atualiza a tela de acordo com o laço principal

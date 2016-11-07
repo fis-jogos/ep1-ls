@@ -16,7 +16,7 @@ class pacBum:
         self.dead = False
         self.split_range = 10
         self.pygameS = pygame.image.load(self.image).convert_alpha()
-        self.fgameS = world.add.circle(20, pos=(400, 300), color='green', mass = 500)
+        self.fgameS = world.add.circle(20, pos=(400, 300), color='green', mass = 20)
         self.rect = [0,0,60,60]
         self.cont_animation = 0
         self.points = 0
@@ -112,8 +112,6 @@ def pacbum_is_dead(self):
             return True
         else:
             pass
-
-
 
 
 

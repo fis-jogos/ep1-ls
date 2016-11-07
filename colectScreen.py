@@ -12,11 +12,12 @@ from objects import *
 from pygame.locals import *
 from sys import exit
 from screenBattle import *
+from zieloFlu import *
 
 
 def time_end(time_for_game, pacbum):
 
-    if time_for_game >= 60:
+    if time_for_game >= 3:
         pacbum.position = [3000, 3000]
         return True
     else:
@@ -216,6 +217,11 @@ def colectScreen():
             end_time = end_of_time.game_font.render(end_of_time.text,1,end_of_time.color)
             screen.blit(end_time, (end_of_time.pygamePosition))
             if pressed_keys[K_SPACE]:
+                pygame.display.set_caption('PAC BUM! > Battle One')
+                PacBum.vel_in_x = 10
+                PacBum.vel_in_y = 10
+                PacBum.friction_tax = 0
+
                 battleScreen(PacBum)
 
 
@@ -287,7 +293,7 @@ def colectScreen():
 
 
         #VOLTAR PARA O MENU
-        if pressed_keys[K_ESCAPE]:
+        if pressed_keys[K_r]:
             menuPacBum.mainMenu()
 
         #update da cena
