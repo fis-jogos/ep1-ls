@@ -17,7 +17,7 @@ from zieloFlu import *
 
 def time_end(time_for_game, pacbum):
 
-    if time_for_game >= 3:
+    if time_for_game >= 60:
         pacbum.position = [3000, 3000]
         return True
     else:
