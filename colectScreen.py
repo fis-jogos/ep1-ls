@@ -180,11 +180,17 @@ def colectScreen():
         #Desenha o plano de fundo
         draw_background(screen, bg)
 
+
         #Pega o tempo e atualiza
+
+        if second == 0:
+            aux = second + 1
+
         if second == aux:
             if time_for_game < 60:
                 time_for_game += 1
                 aux = second + 1
+
             else:
                 time_for_game = 60
 
@@ -288,12 +294,14 @@ def colectScreen():
         pygame.display.update()
         update_colisions(world, PacBum)
 
-        #clock máximo do update
-        time_passed = clock.tick(30)
-
         #Faz um update para o proximo laço
         time_now  = datetime.now()
         second = time_now.second
+
+
+        #clock máximo do update
+        time_passed = clock.tick(30)
+
 
 
 
