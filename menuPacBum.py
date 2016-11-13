@@ -2,6 +2,7 @@
 import pygame
 import time
 from menuArrow import *
+from FGAme import *
 from colectScreen import *
 from screenCredits import *
 from background import *
@@ -11,6 +12,7 @@ from sys import exit
 #Inicializa o menu principal
 def mainMenu():
 
+    bg_sound = play("Blob-Monsters-on-the-Loose")
 
     #inicializa os objetos do menu principal
     pygame.font.init()
@@ -84,25 +86,32 @@ def mainMenu():
         #Comandos da seta de controle do menu principal
         #Para cima
         if pressed_keys[K_UP]:
+            select_sound = play("UI_Quirky27")
             arrow.value -= 1
             time.sleep(1/7)
             if arrow.value < 0:
-                arrow.value = 0
+                arrow.value = 3
+
 
         #Para baixo
         if pressed_keys[K_DOWN]:
+            select_sound = play("UI_Quirky27")
             arrow.value += 1
             time.sleep(1/7)
             if arrow.value > 3:
-                arrow.value = 3
+                arrow.value = 0
+
 
         #Confrima opção
         if pressed_keys[K_RETURN]:
+            play("PowerUp10")
             if arrow.value == 0:
+                bg_sound.stop()
                 colectScreen()
             elif arrow.value == 1:
                 print('1')
             elif arrow.value == 2:
+                bg_sound.stop()
                 screenCredits()
             if arrow.value == 3:
                 pygame.quit()
