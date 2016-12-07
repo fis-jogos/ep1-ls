@@ -53,13 +53,25 @@ setup(
     'pygame',
     'pgzero'
     ],
+    package_data={
+        'pacbum': [
+             'pacbum/images/*.*',
+	     'pacbum/assets/*.*',
+	     'pacbum/assets/sfx/*.*'
+        ],
+    },
     extras_require={
         'dev': [
             'python-boilerplate[dev]',
         ],
     },
+    entry_points={
+       'console_scripts': [
+            'pacbum = pacbum.__main__:main'
+        ],
+    },
 
     # Other configurations
-    zip_safe=True,
+    zip_safe=False,
     platforms='any',
 )

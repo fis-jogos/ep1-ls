@@ -1,6 +1,10 @@
 import argparse
 import pacbum
+import pygame
 from pacbum import __version__
+import pacbum.mainPACBUM
+from pacbum.menuPacBum import *
+import os
 
 
 def get_parser():
@@ -25,9 +29,10 @@ def main(args=None):
     parser = get_parser()
     args = parser.parse_args(args)
 
-    # Put your main script logic here
-    print('No action defined for pacbum module!')
-
+    path = os.path.dirname(__file__)
+    os.chdir(path)
+    pygame.init()
+    mainMenu()
 
 if __name__ == '__main__':
     main()
