@@ -55,9 +55,9 @@ setup(
     ],
     package_data={
         'pacbum': [
-             'pacbum/images/*.*',
-	     'pacbum/assets/*.*',
-	     'pacbum/assets/sfx/*.*'
+             'images/*.*',
+	     'assets/*.*',
+	     'assets/sfx/*.*'
         ],
     },
     extras_require={
